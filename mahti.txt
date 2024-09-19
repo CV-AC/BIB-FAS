@@ -3,21 +3,21 @@
 #SBATCH --account=project_2005312
 #SBATCH --nodes=1
 #SBATCH --partition=gpusmall
-#SBATCH --time=2:00:00
+#SBATCH --time=1:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=24
 #SBATCH --gres=gpu:a100:1,nvme:100
 module load pytorch
 
 cd /scratch/project_2009271/datasets/anti-spoofing
-cp FAS_simple_O.tar $LOCAL_SCRATCH
+cp FAS.tar $LOCAL_SCRATCH
 wait
 
 cd $LOCAL_SCRATCH
 tar -xf FAS_simple_O.tar
 wait
 
-cd /scratch/project_2009271/DGFAS/ICM_O/DGFAS_CIR_Mut_constrast_md_2
-export OMP_NUM_THREADS=4
-srun python train.py --data_dir $LOCAL_SCRATCH/FAS_simple_O
+cd /scratch/project_2009271/DGFAS/ICM_O/DGFAS
+export OMP_NUM_THREADS=8
+srun python train.py --data_dir $LOCAL_SCRATCH/FAS
 wait
