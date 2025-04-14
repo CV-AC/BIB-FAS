@@ -325,7 +325,7 @@ def parse_args():
     parser.add_argument('--wp_epoch', type=int, default=5, help='learning_rate_peak_epoch')
     parser.add_argument('--decay_epoch', type=int, default=20, help='learning_rate_decay_epoch')
 
-    # Important!! Change the seed may case up to 50% performance variation!!
+    # The random seed may cause a significant performance change during testing
     parser.add_argument('--seed', type=int, default=1223, help='batch size')
     parser.add_argument('--start_epoch', type=int, default=0, help='start epoch')
     parser.add_argument('--num_epochs', type=int, default=100, help='total training epochs')
